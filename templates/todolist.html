@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<title>Todo List</title>
+<style>
+    body {
+        background: url("{% static '/images/todo.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        margin: 5% auto;
+    }
+
+    input.form-control {
+        width: 50%;
+        display: table;
+        margin: auto;
+    }
+
+    button.btn.btn-primary {
+        display: table;
+        margin: 15px auto;
+    }
+
+
+    table {
+        box-shadow: 15px 17px 40px 0px #000000;
+        border-radius: 20px;
+        backdrop-filter: blur(3px);
+    }
+
+    h1.text-monospace {
+        box-shadow: 5px 5px 10px 10px rgb(0 0 0 / 30%);
+        border-radius: 10px;
+        font-size: 80px;
+        backdrop-filter: blur(10px);
+        width: 36%;
+        display: table;
+        margin: auto;
+    }
+
+    form {
+        margin: 20px;
+    }
+</style>
+
+<section>
+    <div class="container text-center">
+        <h1 class="text-monospace">Todo List</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="todo" class="form-control" placeholder="Enter Item" required>
+            <button type="submit" class="btn btn-primary">Add item</button>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Todo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{i.item}}</td>
+                    <td><a href="{% url 'deletetodo' i.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</section>
+
+{% endblock %}

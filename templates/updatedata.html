@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<title>Update Details</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: url("https://pixabay.com/get/g0cfb6df68a5899603ec127425d2aa02fc190c6a1caea729d23c6b828d1b9f35c75c468443be7a29e8545746492b24d110d5452f5d65c84d27ab98cae7b1d1a3e_1920.png");
+        background-repeat: no-repeat;
+    }
+
+    .boxshadow {
+        box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.295);
+        border-radius: 10px;
+        backdrop-filter: blur(3px);
+        font-size: 20px;
+    }
+
+    h1.text-center {
+        font-size: 80px;
+    }
+
+    .container {
+        margin: 5% auto;
+    }
+
+    button.btn.btn-dark {
+        display: table;
+        margin: auto;
+    }
+
+    form.form-group {
+        padding: 50px;
+    }
+</style>
+
+<body>
+    {% load crispy_forms_tags %}
+    <br><br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    <h1 class="text-center text-monospace">Update Details</h1>
+
+    <div class="container boxshadow">
+        <form class="form-group my-5" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    {{s.name|as_crispy_field}}
+                </div>
+                <div class="col-md-5">
+                    {{s.email|as_crispy_field}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    {{s.phone|as_crispy_field}}
+                    {{s.dob|as_crispy_field}}
+                </div>
+                <div class="col-md-5">
+                    {{s.address|as_crispy_field}}
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success btn-lg " type="submit">Submit</button>
+            </div>
+        </form>
+        <hr>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<title>Blog</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  table {
+    box-shadow: -5px 5px 15px 5px rgba(192, 152, 152, 0.2);
+    border-radius: 50px;
+  }
+
+  body {
+    background: url("{% static '/images/homebg2.jpg' %}");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .pagination {
+    background-color: transparent;
+    border-radius: 10px;
+    margin: auto;
+    display: inline-flex;
+    letter-spacing: 5px;
+    font-size: 25px;
+  }
+
+
+  .container {
+    background-color: rgb(0 0 0 / 70%);
+    color: rgb(0, 0, 0);
+    text-transform: inherit;
+
+  }
+
+  #desc {
+    font-size: large;
+  }
+
+  #blog {
+    box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.295);
+    border-radius: 10px;
+    padding: 50px;
+    backdrop-filter: blur(10px);
+    margin: 40px auto;
+  }
+
+  h1.text-center.text-monospace {
+    font-size: 80px;
+    background: black;
+        color: white;
+        padding: 50px;
+  }
+  p{
+    font-size: 20px;
+  }
+
+</style>
+<div class="background ">
+
+  <!-- <table class="table table-borderless table-active">
+            <thead></thead>
+<tbody class="text-light">
+    
+    {% for i in data %}
+    <tr>
+        <td><h2><b>{{i.title}}</b></h2></td>
+    </tr>
+    <tr>
+        <td><img src="{{i.img.url}}" style="max-width: 500px;"></td>
+    </tr>
+    <tr>
+        <td><b><div id="desc"> Description - </div><p class="text-justify my-2">{{i.desc}}</p></b></td>
+    </tr>
+    <tr>
+        <td>Upload by - <b>{{i.upload_by}} on {{i.time}}</b></td>
+    </tr>
+    <tr><td><hr></td></tr>
+    {% endfor %}
+</tbody>
+</table> -->
+  <h1 class="text-center text-monospace" style="text-shadow: 2px 2px 4px #000000;">Blogs</h1>
+  <div class="container blog text-center bg-transparent" id="blog">
+    {% for j in data %}
+    <div class="row ">
+      <div class="col-md-4"><br><br>
+        <h2>{{j.title}}</h2>
+        <img src="{{j.img.url}}" style="width: 100%;">
+      </div>
+      <div class="col-md-8 text-justify ">
+        <br><br>
+        <h3> Description -</h3><p>{{j.desc}}</p>
+        Upload by - <b>{{j.upload_by}} on {{j.time}}</b>
+        <hr>
+      </div>
+    </div>
+    {% endfor %}
+    {% if data.has_other_pages %}
+    <ul class="pagination text-dark">
+      {% if data.has_previous %}
+      <li><a href="?page={{ data.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in data.paginator.page_range %}
+      {% if data.number == i %}
+      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if data.has_next %}
+      <li><a href="?page={{ data.next_page_number }}">&raquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}

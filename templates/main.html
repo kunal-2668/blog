@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<title>Project | Home</title>
+<style>
+    section.s1 {
+        background: black;
+        color: white;
+        padding: 50px;
+    }
+
+    p.text-justify {
+        margin: 20PX 0; 
+    }
+    body {
+        background: url('https://images.unsplash.com/photo-1634655377962-e6e7b446e7e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80');
+        background-size: cover;
+        background-repeat: no-repeat;
+        backdrop-filter: blur(15px);
+  }
+
+button.btn.btn-success {
+    display: table;
+    margin: auto;
+}
+span {
+    display: table;
+    margin: auto;
+}
+
+button.btn.btn-primary {
+    display: table;
+    margin: auto;
+}
+.container.c2 {
+    padding: 40px;
+}
+h2.signup{
+    margin: 20px auto;
+    display: table;
+    font-size: 4rem;
+}
+input.form-control.f1 {
+    width: 70%;
+    display: table;
+    margin: auto;
+}
+label.f1{
+    display: table;
+    margin: auto;
+}
+.binfo{
+    display: table;
+    margin: auto;
+}
+h2.aboutblog{
+    display: table;
+    margin: 20px auto;
+}
+img{
+    width: 80%;
+    display: table;
+    margin: auto;
+}
+section.aboutblog {
+    margin: 65px;
+}
+img.binfo{
+    width: 80%;
+}
+</style>
+{% for msg in messages %}
+<div class="alert alert-danger" role="alert">
+    {{msg}}
+    {% endfor %}
+  </div>
+<section class="s1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 binfo">
+                <!-- <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nam omnis,
+                    voluptatum itaque cum quibusdam perferendis repellat, a expedita dolorem, iusto ad voluptatibus? Id,
+                    commodi enim? Maxime quam dolorem, at nemo alias maiores, iure, eius inventore cupiditate
+                    accusantium ipsum repellendus possimus aliquid officia consequuntur saepe.</p> -->
+                    <img class="binfo" src="{% static '/images/bloginfo.jpg' %}" alt="">
+            </div>
+            <div class="col-md-6 f1">
+                <h3 class="text-center">Please Sign In to continue!</h3>
+                <form class="form-group" method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <label class="f1" for="username">Username</label>
+                    <input type="text" name="lusername" id="" class="form-control f1" >
+                    <label class="f1" for="Password">Password</label>
+                    <input type="password" name="lpassword" id="" class="form-control f1" ><br>
+                    <button type="submit" class="btn btn-success" >Sign in</button>
+                </form>
+                <span>
+                    Don't Have Account<a href="#signup"> Click Here!</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="aboutblog">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="aboutblog">What is Blog?</h2>
+                <p class="text-justify">A blog (a shortened version of “weblog”) is an online journal or informational website displaying information in reverse chronological order, with the latest posts appearing first, at the top. It is a platform where a writer or a group of writers share their views on an individual subject.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static '/images/blogimg.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="s2" id="signup">
+    <h2 class="signup">Signup Here</h2>
+        <div class="container c2">
+<form method="post" action="{% url 'main' %}">
+    {% csrf_token %}
+    <div class="row">
+<div class="col-md-6">
+    <div class="form-group">
+        <label class="f2" >First Name</label>
+        <input type="text" class="form-control" name="first_name">
+    </div>
+  </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label class="f2">Last Name</label>
+        <input type="text" class="form-control" name="last_name">
+    </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="f2" >UserName</label>
+            <input type="text" class="form-control" name="username">
+        </div>
+        </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label class="f2" >Email address</label>
+        <input type="email" class="form-control" name="email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            
+            <div class="form-group">
+                <label class="f2" for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+        </div>
+<div class="col-md-6">
+
+    
+    <div class="form-group">
+        <label class="f2" for="exampleInputPassword1">Confirm Password</label>
+        <input type="password" class="form-control" name="password2">
+    </div>
+</div>
+</div>
+
+<button type="submit" class="btn btn-primary" name="register">Register</button>
+</form>
+</div>
+
+</section>
+
+{% endblock %}
