@@ -5,7 +5,7 @@ from django.db import models
 class Detail(models.Model):
     name = models.CharField(max_length=40)
     email = models.EmailField()
-    phone = models.IntegerField()
+    phone = models.BigIntegerField()
     address = models.TextField(max_length=150)
     rtime = models.DateTimeField(auto_now_add=True)
     dob = models.DateField(null=True)
